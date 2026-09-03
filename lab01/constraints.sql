@@ -2,7 +2,7 @@
 -- Группа: ИНБО-21-23
 -- Вариант: Общий (Практика 1)
 
--- после импорта CSV добавляем первичные ключи
+
 ALTER TABLE olist.customers ADD CONSTRAINT pk_customers PRIMARY KEY (customer_id);
 ALTER TABLE olist.orders ADD CONSTRAINT pk_orders PRIMARY KEY (order_id);
 ALTER TABLE olist.products ADD CONSTRAINT pk_products PRIMARY KEY (product_id);
@@ -12,10 +12,19 @@ ALTER TABLE olist.order_items ADD CONSTRAINT pk_order_items PRIMARY KEY (order_i
 ALTER TABLE olist.order_payments ADD CONSTRAINT pk_order_payments PRIMARY KEY (order_id, payment_sequential);
 ALTER TABLE olist.order_reviews ADD CONSTRAINT pk_order_reviews PRIMARY KEY (review_id, order_id);
 
--- после импорта CSV добавляем внешние ключи
 ALTER TABLE olist.orders ADD CONSTRAINT fk_orders_customer FOREIGN KEY (customer_id) REFERENCES olist.customers(customer_id);
 ALTER TABLE olist.order_items ADD CONSTRAINT fk_items_order FOREIGN KEY (order_id) REFERENCES olist.orders(order_id);
 ALTER TABLE olist.order_items ADD CONSTRAINT fk_items_product FOREIGN KEY (product_id) REFERENCES olist.products(product_id);
 ALTER TABLE olist.order_items ADD CONSTRAINT fk_items_seller FOREIGN KEY (seller_id) REFERENCES olist.sellers(seller_id);
 ALTER TABLE olist.order_payments ADD CONSTRAINT fk_payments_order FOREIGN KEY (order_id) REFERENCES olist.orders(order_id);
 ALTER TABLE olist.order_reviews ADD CONSTRAINT fk_reviews_order FOREIGN KEY (order_id) REFERENCES olist.orders(order_id);
+
+ANALYZE olist.customers;
+ANALYZE olist.geolocation;
+ANALYZE olist.orders;
+ANALYZE olist.order_items;
+ANALYZE olist.order_payments;
+ANALYZE olist.order_reviews;
+ANALYZE olist.products;
+ANALYZE olist.sellers;
+ANALYZE olist.product_category_name_translation;

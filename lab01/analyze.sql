@@ -1,0 +1,9 @@
+ANALYZE olist.customers;
+ANALYZE olist.geolocation;
+ANALYZE olist.orders;
+ANALYZE olist.order_items;
+ANALYZE olist.order_payments;
+ANALYZE olist.order_reviews;
+ANALYZE olist.products;
+ANALYZE olist.sellers;
+ANALYZE olist.product_category_name_translation;
