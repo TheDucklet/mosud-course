@@ -1,0 +1,180 @@
+<mxfile host="app.diagrams.net" type="device">
+  <diagram id="lab08-v10" name="Olist: перемещения между складами">
+    <mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="Практика 8, вариант 10. ER-модель: перемещения между складами (схема lab, связи с olist.products и olist.sellers)" style="text;html=1;fontSize=16;fontStyle=1;align=left;verticalAlign=middle;fontColor=#0d3d66;" vertex="1" parent="1">
+          <mxGeometry x="20" y="10" width="1100" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="olist_products" value="olist.products" style="swimlane;fontStyle=1;startSize=26;fillColor=#fdf1e7;strokeColor=#b0602a;html=1;" vertex="1" parent="1">
+          <mxGeometry x="20" y="560" width="230" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="olist_products_id" value="PK product_id: text" style="text;html=1;align=left;spacingLeft=8;fontStyle=1;" vertex="1" parent="olist_products">
+          <mxGeometry y="26" width="230" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="olist_products_cat" value="product_category_name: text" style="text;html=1;align=left;spacingLeft=28;" vertex="1" parent="olist_products">
+          <mxGeometry y="46" width="230" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="olist_sellers" value="olist.sellers" style="swimlane;fontStyle=1;startSize=26;fillColor=#fdf1e7;strokeColor=#b0602a;html=1;" vertex="1" parent="1">
+          <mxGeometry x="20" y="60" width="230" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="olist_sellers_id" value="PK seller_id: text" style="text;html=1;align=left;spacingLeft=8;fontStyle=1;" vertex="1" parent="olist_sellers">
+          <mxGeometry y="26" width="230" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="olist_sellers_city" value="seller_city / seller_state" style="text;html=1;align=left;spacingLeft=28;" vertex="1" parent="olist_sellers">
+          <mxGeometry y="46" width="230" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="warehouses" value="lab.warehouses" style="swimlane;fontStyle=1;startSize=26;fillColor=#eef4fb;strokeColor=#1b5e9b;html=1;" vertex="1" parent="1">
+          <mxGeometry x="20" y="260" width="260" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="wh_id" value="PK warehouse_id: integer" style="text;html=1;align=left;spacingLeft=8;fontStyle=1;" vertex="1" parent="warehouses">
+          <mxGeometry y="26" width="260" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="wh_code" value="UQ warehouse_code: varchar(12) NOT NULL" style="text;html=1;align=left;spacingLeft=28;" vertex="1" parent="warehouses">
+          <mxGeometry y="46" width="260" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="wh_name" value="warehouse_name: varchar(60) NOT NULL" style="text;html=1;align=left;spacingLeft=28;" vertex="1" parent="warehouses">
+          <mxGeometry y="66" width="260" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="wh_city" value="UQ(city, warehouse_name) city: varchar(80)" style="text;html=1;align=left;spacingLeft=28;" vertex="1" parent="warehouses">
+          <mxGeometry y="86" width="260" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="wh_state" value="state: char(2) CHECK ^[A-Z]{2}$" style="text;html=1;align=left;spacingLeft=28;" vertex="1" parent="warehouses">
+          <mxGeometry y="106" width="260" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="wh_zip" value="zip_code_prefix: integer CHECK" style="text;html=1;align=left;spacingLeft=28;" vertex="1" parent="warehouses">
+          <mxGeometry y="126" width="260" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="wh_act" value="is_active: boolean NOT NULL" style="text;html=1;align=left;spacingLeft=28;" vertex="1" parent="warehouses">
+          <mxGeometry y="146" width="260" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="inventory" value="lab.warehouse_inventory" style="swimlane;fontStyle=1;startSize=26;fillColor=#eef4fb;strokeColor=#1b5e9b;html=1;" vertex="1" parent="1">
+          <mxGeometry x="340" y="540" width="260" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="inv_wh" value="PK warehouse_id: integer NOT NULL" style="text;html=1;align=left;spacingLeft=8;fontStyle=1;" vertex="1" parent="inventory">
+          <mxGeometry y="26" width="260" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="inv_p" value="PK product_id: text NOT NULL" style="text;html=1;align=left;spacingLeft=8;fontStyle=1;" vertex="1" parent="inventory">
+          <mxGeometry y="46" width="260" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="inv_q" value="qty_on_hand: integer NOT NULL CHECK &gt;= 0" style="text;html=1;align=left;spacingLeft=28;" vertex="1" parent="inventory">
+          <mxGeometry y="66" width="260" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="inv_r" value="reserved_qty: integer NOT NULL CHECK" style="text;html=1;align=left;spacingLeft=28;" vertex="1" parent="inventory">
+          <mxGeometry y="86" width="260" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="inv_up" value="updated_at: timestamptz NOT NULL" style="text;html=1;align=left;spacingLeft=28;" vertex="1" parent="inventory">
+          <mxGeometry y="106" width="260" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="transfers" value="lab.warehouse_transfers" style="swimlane;fontStyle=1;startSize=26;fillColor=#eef4fb;strokeColor=#1b5e9b;html=1;" vertex="1" parent="1">
+          <mxGeometry x="660" y="240" width="290" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="tr_id" value="PK transfer_id: integer IDENTITY" style="text;html=1;align=left;spacingLeft=8;fontStyle=1;" vertex="1" parent="transfers">
+          <mxGeometry y="26" width="290" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="tr_no" value="UQ transfer_no: varchar(20) NOT NULL" style="text;html=1;align=left;spacingLeft=28;" vertex="1" parent="transfers">
+          <mxGeometry y="46" width="290" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="tr_src" value="FK source_warehouse_id NOT NULL" style="text;html=1;align=left;spacingLeft=28;" vertex="1" parent="transfers">
+          <mxGeometry y="66" width="290" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="tr_dst" value="FK destination_warehouse_id NOT NULL" style="text;html=1;align=left;spacingLeft=28;" vertex="1" parent="transfers">
+          <mxGeometry y="86" width="290" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="tr_status" value="status: varchar(12) NOT NULL CHECK IN(...)" style="text;html=1;align=left;spacingLeft=28;" vertex="1" parent="transfers">
+          <mxGeometry y="106" width="290" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="tr_created" value="created_at: timestamptz NOT NULL" style="text;html=1;align=left;spacingLeft=28;" vertex="1" parent="transfers">
+          <mxGeometry y="126" width="290" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="tr_shipped" value="shipped_at: timestamptz" style="text;html=1;align=left;spacingLeft=28;" vertex="1" parent="transfers">
+          <mxGeometry y="146" width="290" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="tr_received" value="received_at: timestamptz CHECK &gt;= shipped_at" style="text;html=1;align=left;spacingLeft=28;" vertex="1" parent="transfers">
+          <mxGeometry y="166" width="290" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="transfer_items" value="lab.warehouse_transfer_items" style="swimlane;fontStyle=1;startSize=26;fillColor=#eef4fb;strokeColor=#1b5e9b;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1040" y="540" width="280" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="ti_tr" value="PK FK transfer_id: integer NOT NULL" style="text;html=1;align=left;spacingLeft=8;fontStyle=1;" vertex="1" parent="transfer_items">
+          <mxGeometry y="26" width="280" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="ti_p" value="PK FK product_id: text NOT NULL" style="text;html=1;align=left;spacingLeft=8;fontStyle=1;" vertex="1" parent="transfer_items">
+          <mxGeometry y="46" width="280" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="ti_q" value="qty: integer NOT NULL CHECK &gt; 0" style="text;html=1;align=left;spacingLeft=28;" vertex="1" parent="transfer_items">
+          <mxGeometry y="66" width="280" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="ti_note" value="note: varchar(120)" style="text;html=1;align=left;spacingLeft=28;" vertex="1" parent="transfer_items">
+          <mxGeometry y="86" width="280" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_wh_inv" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=ERmany;startArrow=ERone;strokeColor=#b3261e;exitX=1;exitY=0.7;exitDx=0;exitDy=0;entryX=0;entryY=0.2;" edge="1" parent="1" source="warehouses" target="inventory">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_wh_inv_l" value="1 : N (warehouse_id) RESTRICT" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="e_wh_inv">
+          <mxGeometry x="-0.1" y="-10" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_prod_inv" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=ERmany;startArrow=ERzeroToOne;strokeColor=#b3261e;" edge="1" parent="1" source="olist_products" target="inventory">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_prod_inv_l" value="0..1 : N (product_id)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="e_prod_inv">
+          <mxGeometry x="-0.2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_wh_tr_src" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=ERmany;startArrow=ERone;strokeColor=#b3261e;" edge="1" parent="1" source="warehouses" target="transfers">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_wh_tr_src_l" value="1 : N источник RESTRICT" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="e_wh_tr_src">
+          <mxGeometry x="-0.25" y="10" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_wh_tr_dst" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=ERmany;startArrow=ERone;strokeColor=#b3261e;" edge="1" parent="1" source="warehouses" target="transfers">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_wh_tr_dst_l" value="1 : N назначение RESTRICT" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="e_wh_tr_dst">
+          <mxGeometry x="-0.25" y="30" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_tr_ti" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=ERmany;startArrow=ERone;strokeColor=#333333;" edge="1" parent="1" source="transfers" target="transfer_items">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_tr_ti_l" value="1 : N (transfer_id) CASCADE" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="e_tr_ti">
+          <mxGeometry x="-0.2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_prod_ti" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=ERmany;startArrow=ERone;strokeColor=#b3261e;dashed=1;" edge="1" parent="1" source="olist_products" target="transfer_items">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_prod_ti_l" value="1 : N (product_id) RESTRICT" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="e_prod_ti">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_inv_tr" value="резервирует остатки (концептуально)" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=none;startArrow=none;dashed=1;strokeColor=#888888;" edge="1" parent="1" source="inventory" target="transfers">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_sell_prod" value="1 : N (поставщик)" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=ERmany;startArrow=ERone;strokeColor=#b0602a;dashed=1;" edge="1" parent="1" source="olist_sellers" target="olist_products">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="legend" value="Легенда: PK — первичный ключ; UQ — альтернативный/составной уникальный ключ; FK — внешний ключ; ERone/ERmany — кратность 1:N; RESTRICT — ON DELETE RESTRICT; CASCADE — ON DELETE CASCADE. Сущности в голубых рамках — новые таблицы схемы lab, в оранжевых — исходные объекты Olist (только внешние ключи, без копирования данных)." style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;fontSize=12;fillColor=#fafafa;strokeColor=#cccccc;" vertex="1" parent="1">
+          <mxGeometry x="20" y="760" width="1300" height="80" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
